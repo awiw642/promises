@@ -17,14 +17,14 @@ var user = require('./promisification');
 var fetchProfileAndWriteToFile = function (readFilePath, writeFilePath) {
   return new Promise(function (resolve, reject) {
     return constructor.pluckFirstLineFromFileAsync(readFilePath)
-    .then(function (username) {
-      return user.getGitHubProfileAsync(username);
-    })
-    .then(function (body) {
-      fs.writeFile(writeFilePath, body, function (error) {
-        reject(error);
+      .then(function (username) {
+        return user.getGitHubProfileAsync(username);
+      })
+      .then(function (body) {
+        fs.writeFile(writeFilePath, body, function (error) {
+          reject(error);
+        });
       });
-    });
   });
 };
 
