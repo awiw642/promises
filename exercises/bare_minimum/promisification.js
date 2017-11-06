@@ -31,7 +31,7 @@ var getGitHubProfileAsync = function(user) {
   var options = {
     url: 'https://api.github.com/users/' + user,
     headers: { 'User-Agent': 'request' },
-    json: true  // will JSON.parse(body) for us
+    json: true
   };
 
   return new Promise(function(resolve, reject) {
@@ -39,13 +39,14 @@ var getGitHubProfileAsync = function(user) {
       if (error) {
         reject(error);
       } else if (body.message) {
+        console.log(body.message);
         reject(new Error('Failed to get GitHub profile: ' + body.message));
       } else {
         resolve(body);
       }
     });
   });
-} // TODO
+};
 
 
 // (2) Asyncronous token generation
